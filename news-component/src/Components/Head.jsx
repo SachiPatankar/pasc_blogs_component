@@ -2,13 +2,14 @@
 
 export const Head = () => {
   return (
-    <div className="w-[100%] h-[40px] mb-[10px] mt-[10px] flex flex-row flex-wrap justify-between items-center">
-        <section className=" w-[61px] h-[23px] gap-[6px] flex flex-row items-center">
+    <div className="h-[40px] mb-[10px] mt-[10px] flex justify-between items-center px-2 md:px-24 lg:px-40">
+        <div className=" w-[61px] h-[23px] gap-[6px] flex flex-row items-center">
             <div className=" w-[4px] h-[10px] rounded-[12px] bg-divBesideNews"></div>
             <div className=" w-[51px] h-[23px] ">
                 <p className=" font-roboto font-fiveHundered text-[20px] leading-[23.44px]">News</p>
             </div>
-        </section>
+        </div>
+        <div>
         <button className=" flex items-center w-[119px] h-[40px] rounded-[12px] pt-[10px] pr-[16px] pb-[10px] pl-[24px] bg-buttonBackground ">
             <p className="w-[55px] h-[22px] font-roboto text-[14px] text-buttonText font-fiveHundered  leading-[20px]">Show all</p>
             <div className=" w-[16px] h-[16px] ">
@@ -17,6 +18,7 @@ export const Head = () => {
                 </svg>
             </div>
         </button>
+        </div>
     </div>
   )
 }
