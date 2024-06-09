@@ -1,32 +1,28 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import Signup from '../components/Signup_';
+import Login from '../components/Login';
 
 const LoginPage = () => {
+  const [login,setlogin]=useState(true);
   return (
-    <div className='mt-48 ml-4 mr-4'>
-        <h1 className='text-4xl text-center mb-4'>
-        Login
-        </h1>
+    
+    <div className="bg-[#ddebff] flex flex-col-reverse md:flex-row w-screen h-screen relative justify-center">
+    <div className="bg-[#ddebff] md:w-5/12 h-screen flex flex-col-reverse justify-center items-center">
 
-        <form className='max-w-md mx-auto'>
-            <input
-            className='w-full border my-2 py-2 px-3 rounded-2xl'
-            type='email'
-            placeholder='your@email.com'
-            />
-            <input
-            className='w-full border my-2 py-2 px-3 rounded-2xl'
-            type='password'
-            placeholder='password'
-            />
-            <button className='bg-[#FC4308] p-2 w-full text-white rounded-2xl'>
-            Login
-            </button>
-            <div className='text-gray-500 mt-4'>
-            Don't have an account yet? <Link className='underline text-black' to='/register'>Register Now</Link>
-            </div>
-        </form>
-    </div>
+      <div className="flex flex-col justify-center items-center bg-white px-8 py-8 lg:py-10 lg:w-3/5 rounded-lg shadow-lg">
+        <h2 className="text-[#3272A8] font-semibold text-2xl text-nowrap mb-4 pb-1">{login?'Login Form':'Signup Form'}</h2>
+        <div className='w-full pb-4'>
+          <button className={`w-1/2 h-9 md:h-12 rounded-xl border border-slate-200  ${login? 'bg-blue-500':'bg-white'}`} onClick={()=>setlogin(false)}>
+            login
+          </button>
+          <button className={`w-1/2 h-9 md:h-12 rounded-xl border border-slate-200 ${!login? 'bg-blue-500':'bg-white'}`} onClick={()=>setlogin(true)}>
+              signup
+          </button>
+        </div>
+       {login?<Login/>:<Signup/>}
+         </div>
+     </div>
+   </div>
   );
 };
 
