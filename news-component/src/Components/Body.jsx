@@ -1,17 +1,41 @@
+import axios from "axios";
+import Card from "./Card";
+import { useEffect, useState } from "react";
 
-import Card from "./Card"
 const Body = () => {
-  return (
-    // <div className=" h-[678px] mt-[10px] grid grid-rows-3 grid-cols-2">
-    <div className="flex flex-row flex-wrap gap-8 justify-center">
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-    </div>
-  )
-}
+  const [news, setNews] = useState([]);
 
-export default Body
+  useEffect(() => {
+    const fetchNews = async () => {
+      try {
+        const newsResponse = await axios.get(
+          "https://inshortsapi.vercel.app/news?category=technology"
+        );
+        setNews(newsResponse.data.data);
+        console.log(newsResponse.data.data);
+      } catch (error) {
+        console.error("Error fetching news:", error);
+      }
+    };
+
+    fetchNews();
+  }, []);
+
+  return (
+    <div className="flex flex-row flex-wrap gap-8 justify-center">
+      {news.map((item, index) => (
+        <Card
+          key={index}
+          imageUrl={item.imageUrl}
+          author={item.author}
+          title={item.title}
+          content={item.content}
+          date={item.date}
+          readMoreUrl={item.readMoreUrl}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default Body;
